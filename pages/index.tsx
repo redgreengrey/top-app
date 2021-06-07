@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react";
-import { Button, Htag, P } from "../components";
+import { Button, Htag, P, Rating } from "../components";
 
 export default function Home(): JSX.Element {
-    const [counter, setCounter] = useState<number>(0);
-
-    useEffect(() => {
-        console.log(counter);
-    });
+    const [rating, setRating] = useState<number>(3);
 
     return (
         <>
-            <Htag tag="h1">{counter}</Htag>
-            <Button
-                appearence="primary"
-                arrow="right"
-                onClick={() => setCounter((counter) => counter - 1)}
-            >
-                -
+            <Htag tag="h1">{rating}</Htag>
+            <Button appearence="primary" arrow="right">
+                button
             </Button>
-            <Button
-                appearence="primary"
-                arrow="right"
-                onClick={() => setCounter((counter) => counter + 1)}
-            >
-                +
+            <Button appearence="primary" arrow="right">
+                button
             </Button>
             <Button appearence="ghost" arrow="right">
                 кнопка
@@ -31,6 +19,7 @@ export default function Home(): JSX.Element {
             <P size="l">Большой</P>
             <P>Средний</P>
             <P size="s">Маленький</P>
+            <Rating isEditable rating={rating} setRating={setRating} />
         </>
     );
 }
