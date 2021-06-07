@@ -1,11 +1,29 @@
+import { useEffect, useState } from "react";
 import { Button, Htag, P } from "../components";
 
 export default function Home(): JSX.Element {
+    const [counter, setCounter] = useState<number>(0);
+
+    useEffect(() => {
+        console.log(counter);
+    });
+
     return (
         <>
-            <Htag tag="h1">текст</Htag>
-            <Button appearence="primary" arrow="right">
-                кнопка
+            <Htag tag="h1">{counter}</Htag>
+            <Button
+                appearence="primary"
+                arrow="right"
+                onClick={() => setCounter((counter) => counter - 1)}
+            >
+                -
+            </Button>
+            <Button
+                appearence="primary"
+                arrow="right"
+                onClick={() => setCounter((counter) => counter + 1)}
+            >
+                +
             </Button>
             <Button appearence="ghost" arrow="right">
                 кнопка
