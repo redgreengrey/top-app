@@ -25,7 +25,7 @@ const firstLevelMenu: FirstLevelMenuItem[] = [
         id: TopLevelCategory.Services,
     },
     {
-        route: "courses",
+        route: "books",
         name: "Книги",
         icon: <BooksIcon />,
         id: TopLevelCategory.Books,
