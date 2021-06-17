@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <>
             <Head>
-                <title>TopApp - самый топ</title>
+                <title>OwlTop</title>
                 <link rel="icon" href="/favico.ico" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
                 <link
