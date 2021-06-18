@@ -43,6 +43,9 @@
 
 .prosGroup {
 	grid-column: middle / end;
+
+	font-size: 16px;
+	line-height: 22px;
 }
 
 .logo img {
@@ -99,11 +102,6 @@
 
 .reviewBtn {
 	margin-left: 20px;
-}
-
-.prosGroup {
-	font-size: 16px;
-	line-height: 22px;
 }
 
 .prosTitle {
