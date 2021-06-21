@@ -100,10 +100,10 @@ export const Product = ({ product, className, ...props }: ProductProps): JSX.Ele
                 })}
             >
                 {product.reviews.map((r) => (
-                    <>
-                        <Review review={r} key={r._id} />
+                    <React.Fragment key={r._id}>
+                        <Review review={r} />
                         <Divider />
-                    </>
+                    </React.Fragment>
                 ))}
                 <ReviewForm productId={product._id} />
             </Card>
