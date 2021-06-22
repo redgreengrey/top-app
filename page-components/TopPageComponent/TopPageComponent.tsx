@@ -5,6 +5,7 @@ import { TopLevelCategory } from "../../interfaces/page.interface";
 import React, { useEffect, useReducer } from "react";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { sortReducer } from "./sort.reducer";
+import { useScrollY } from "../../hooks/useScrollY";
 
 export const TopPageComponent = ({
     page,
@@ -15,6 +16,7 @@ export const TopPageComponent = ({
         products,
         sort: SortEnum.Rating,
     });
+    const scrollY = useScrollY();
 
     const setSort = (sort: SortEnum) => {
         dispatchSort({ type: sort });
@@ -26,6 +28,7 @@ export const TopPageComponent = ({
 
     return (
         <div className={styles.wrapper}>
+            {scrollY}
             <div className={styles.title}>
                 <Htag tag="h1">{page.title}</Htag>
                 {products && (
