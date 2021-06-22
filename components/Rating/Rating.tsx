@@ -6,12 +6,10 @@ import { useEffect, useState, KeyboardEvent, forwardRef, ForwardedRef } from "re
 
 export const Rating = forwardRef(
     (
-        { isEditable = false, rating, setRating, ...props }: RatingProps,
+        { isEditable = false, rating, setRating, error, ...props }: RatingProps,
         ref: ForwardedRef<HTMLDivElement>
     ): JSX.Element => {
-        const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
-            new Array(5).fill(<div></div>)
-        );
+        const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
         useEffect(() => {
             constructRating(rating);
@@ -24,6 +22,7 @@ export const Rating = forwardRef(
                         className={cn(styles.star, {
                             [styles.filled]: i < currentRating,
                             [styles.editable]: isEditable,
+                            [styles.error]: error,
                         })}
                         onMouseEnter={() => changeDisplay(i + 1)}
                         onMouseLeave={() => changeDisplay(rating)}
@@ -63,10 +62,17 @@ export const Rating = forwardRef(
         };
 
         return (
-            <div ref={ref} {...props}>
+            <div
+                ref={ref}
+                className={cn(styles.ratingWrapper, {
+                    [styles.error]: error,
+                })}
+                {...props}
+            >
                 {ratingArray.map((r, i) => (
                     <span key={i}>{r}</span>
                 ))}
+                {error && <span className={styles.errorMessage}>{error.message}</span>}
             </div>
         );
     }
