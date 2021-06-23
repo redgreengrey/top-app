@@ -91,15 +91,6 @@ export const Menu = (): JSX.Element => {
                             >
                                 {buildThirdLevel(m.pages, menuItem.route)}
                             </motion.div>
-                            {/* <motion.div
-								layout
-								variants={variants}
-								initial={m.isOpened ? 'visible' : 'hidden'}
-								animate={m.isOpened ? 'visible' : 'hidden'}
-								className={cn(styles.secondLevelBlock)}
-							>
-								{buildThirdLevel(m.pages, menuItem.route)}
-							</motion.div> */}
                         </div>
                     );
                 })}

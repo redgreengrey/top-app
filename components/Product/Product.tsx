@@ -22,6 +22,21 @@ export const Product = motion(
             const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
             const reviewRef = useRef<HTMLDivElement>(null);
 
+            const variants = {
+                visible: {
+                    opacity: 1,
+                    height: "auto",
+                    transition: {
+                        when: "beforeChildren",
+                        staggerChildren: 0.1,
+                    },
+                },
+                hidden: {
+                    opacity: 0,
+                    height: 0,
+                },
+            };
+
             const scrollToReview = () => {
                 setIsReviewOpened(true);
                 reviewRef.current.scrollIntoView({
@@ -109,22 +124,22 @@ export const Product = motion(
                             </Button>
                         </div>
                     </Card>
-                    <Card
-                        color="blue"
-                        className={cn(styles.reviews, {
-                            [styles.opened]: isReviewOpened,
-                            [styles.closed]: !isReviewOpened,
-                        })}
-                        ref={reviewRef}
+                    <motion.div
+                        layout
+                        variants={variants}
+                        initial={"hidden"}
+                        animate={isReviewOpened ? "visible" : "hidden"}
                     >
-                        {product.reviews.map((r) => (
-                            <React.Fragment key={r._id}>
-                                <Review review={r} />
-                                <Divider />
-                            </React.Fragment>
-                        ))}
-                        <ReviewForm productId={product._id} />
-                    </Card>
+                        <Card color="blue" className={styles.reviews} ref={reviewRef}>
+                            {product.reviews.map((r) => (
+                                <React.Fragment key={r._id}>
+                                    <Review review={r} />
+                                    <Divider />
+                                </React.Fragment>
+                            ))}
+                            <ReviewForm productId={product._id} />
+                        </Card>
+                    </motion.div>
                 </div>
             );
         }
