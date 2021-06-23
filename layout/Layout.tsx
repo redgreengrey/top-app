@@ -4,16 +4,39 @@ import cn from "classnames";
 import { Header } from "./Header/Header";
 import { Sidebar } from "./Sidebar/Sidebar";
 import { Footer } from "./Footer/Footer";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useState, KeyboardEvent, useRef } from "react";
 import { AppContextProvider, IAppContext } from "../context/app.context";
 import { Up } from "../components";
 
 export const Layout = ({ children }: LayoutProps): JSX.Element => {
+    const [isSkipLinkDisplayed, setIsSkipLinkDisplayed] = useState<boolean>(false);
+    const bodyRef = useRef<HTMLDivElement>(null);
+
+    const skipContent = (key: KeyboardEvent) => {
+        if (key.code === "Enter" || key.code === "Space") {
+            key.preventDefault();
+            bodyRef.current.focus();
+        }
+        setIsSkipLinkDisplayed(false);
+    };
+
     return (
         <div className={styles.wrapper}>
+            <a
+                onFocus={() => setIsSkipLinkDisplayed(true)}
+                tabIndex={1}
+                className={cn(styles.skipLink, {
+                    [styles.displayed]: isSkipLinkDisplayed,
+                })}
+                onKeyDown={skipContent}
+            >
+                Сразу к содержанию
+            </a>
             <Header className={styles.header} />
             <Sidebar className={styles.sidebar} />
-            <div className={styles.body}>{children}</div>
+            <div className={styles.body} ref={bodyRef} tabIndex={0}>
+                {children}
+            </div>
             <Footer className={styles.footer} />
             <Up />
         </div>
