@@ -28,7 +28,6 @@ export const TopPageComponent = ({
 
     return (
         <div className={styles.wrapper}>
-            {scrollY}
             <div className={styles.title}>
                 <Htag tag="h1">{page.title}</Htag>
                 {products && (
