@@ -15,7 +15,7 @@ export const Layout = ({ children }: LayoutProps): JSX.Element => {
     const skipContent = (key: KeyboardEvent) => {
         if (key.code === "Enter" || key.code === "Space") {
             key.preventDefault();
-            bodyRef.current.focus();
+            bodyRef.current?.focus();
         }
         setIsSkipLinkDisplayed(false);
     };

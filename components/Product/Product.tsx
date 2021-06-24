@@ -43,6 +43,7 @@ export const Product = motion(
                     behavior: "smooth",
                     block: "start",
                 });
+                reviewRef.current?.focus();
             };
 
             return (
@@ -130,14 +131,19 @@ export const Product = motion(
                         initial={"hidden"}
                         animate={isReviewOpened ? "visible" : "hidden"}
                     >
-                        <Card color="blue" className={styles.reviews} ref={reviewRef}>
+                        <Card
+                            color="blue"
+                            className={styles.reviews}
+                            ref={reviewRef}
+                            tabIndex={isReviewOpened ? 0 : -1}
+                        >
                             {product.reviews.map((r) => (
                                 <React.Fragment key={r._id}>
                                     <Review review={r} />
                                     <Divider />
                                 </React.Fragment>
                             ))}
-                            <ReviewForm productId={product._id} />
+                            <ReviewForm isOpened={isReviewOpened} productId={product._id} />
                         </Card>
                     </motion.div>
                 </div>
