@@ -58,6 +58,9 @@
 	right: 20px;
 
 	cursor: pointer;
+
+	border: none;
+	background: none;
 }
 
 @media screen and (max-width: 1080px) {
