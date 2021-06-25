@@ -132,6 +132,7 @@ export const Product = motion(
                                 onClick={() => setIsReviewOpened(!isReviewOpened)}
                                 arrow={isReviewOpened ? "down" : "right"}
                                 className={styles.reviewBtn}
+                                aria-expanded={isReviewOpened}
                             >
                                 Читать отзывы
                             </Button>
