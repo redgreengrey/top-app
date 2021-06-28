@@ -136,7 +136,7 @@ export const Menu = (): JSX.Element => {
     return (
         <nav className={styles.menu} role="navigation">
             {announce && (
-                <span role="log" className={styles.visualyHidden}>
+                <span role="log" className="visualyHidden">
                     {announce === "opened" ? "развернуто" : "свернуто"}
                 </span>
             )}
