@@ -5,7 +5,7 @@ import { TopLevelCategory } from "../../interfaces/page.interface";
 import React, { useEffect, useReducer } from "react";
 import { SortEnum } from "../../components/Sort/Sort.props";
 import { sortReducer } from "./sort.reducer";
-import { useScrollY } from "../../hooks/useScrollY";
+import { useReducedMotion } from "framer-motion";
 
 export const TopPageComponent = ({
     page,
@@ -16,7 +16,8 @@ export const TopPageComponent = ({
         products,
         sort: SortEnum.Rating,
     });
-    const scrollY = useScrollY();
+
+    const shouldReduceMotion = useReducedMotion();
 
     const setSort = (sort: SortEnum) => {
         dispatchSort({ type: sort });
@@ -40,7 +41,12 @@ export const TopPageComponent = ({
             <div role="list">
                 {sortedProducts &&
                     sortedProducts.map((p) => (
-                        <Product role="listitem" layout key={p._id} product={p} />
+                        <Product
+                            role="listitem"
+                            layout={shouldReduceMotion ? false : true}
+                            key={p._id}
+                            product={p}
+                        />
                     ))}
             </div>
             <div className={styles.hhTitle}>
